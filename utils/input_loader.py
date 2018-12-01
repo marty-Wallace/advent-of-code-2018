@@ -10,6 +10,7 @@ OUTPUT = 'output'
 INPUT_DIR = './input/day'
 PART_DIR = 'part'
 TEST_INPUT_DIR = './input/test'
+SECRETS_FILE = '.secrets'
 
 
 class InputLoader:
@@ -48,7 +49,7 @@ class InputLoader:
     def load_session_token(self):
         if self.cookies:
             return
-        with open('.secrets') as file:
+        with open(SECRETS_FILE) as file:
             for line in file:
                 if line.split('=')[0] == 'session':
                     self.cookies = {'session': line.split('=')[1]}
