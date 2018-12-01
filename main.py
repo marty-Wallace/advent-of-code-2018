@@ -1,6 +1,7 @@
 import os
 import sys
 from io import StringIO
+from timeit import default_timer as timer
 
 from utils.day_loader import DayLoader
 from utils.input_loader import InputLoader
@@ -47,6 +48,7 @@ def run(day_num, part):
 
 
 def test(day_num, part_num, test_num):
+    start = timer()
     print()
     print('Testing day: %d, part %d, test_num: %d' % (day_num, part_num, test_num))
     input_stream = InputLoader(day_num, part_num=part_num, test=True, test_num=test_num).load_input()
@@ -56,6 +58,8 @@ def test(day_num, part_num, test_num):
         day.part_one()
     else:
         day.part_two()
+    end = timer()
+    print("Time taken: %.5f seconds" % (end-start))
     validate_output(day_num, part_num, test_num, output_stream.getvalue().split('\n'))
 
 
@@ -71,7 +75,7 @@ def validate_output(day_num, part_num, test_num, actual_lines):
             print("\n".join([line for line in actual_lines]))
             print('-----EXPECTED')
             print("\n".join([line for line in expected_lines]))
-            break
+            return
         line += 1
     print('Test matched exactly')
 
@@ -91,5 +95,5 @@ def discover_tests(day_num, part_num):
 
 if __name__ == '__main__':
     # use this for manually testing cmd line args
-    # sys.argv = ['', '--test', '1', '1']
+    # sys.argv = ['', '--test', '1', '2']
     main()
