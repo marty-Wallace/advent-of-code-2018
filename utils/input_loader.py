@@ -52,7 +52,7 @@ class InputLoader:
         with open(SECRETS_FILE) as file:
             for line in file:
                 if line.split('=')[0] == 'session':
-                    self.cookies = {'session': line.split('=')[1]}
+                    self.cookies = {'session': line.split('=')[1].strip()}
                     return
         raise Exception('Session token not provided')
 

@@ -27,11 +27,14 @@ class Day1(Day):
 
         best = 2**32
         best_amount = 0
+        seen.remove(0)
         for n in seen:
             for m in seen:
-                if (n-m) % freq == 0:
-                    count = (n-m) // freq
-                    if count < best:
+                if n == m:
+                    continue
+                if (m-n) % freq == 0:
+                    count = (m-n) // freq
+                    if 0 < count < best:
                         best = count
                         best_amount = m
 
