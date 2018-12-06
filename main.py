@@ -95,5 +95,6 @@ def discover_tests(day_num, part_num):
 
 if __name__ == '__main__':
     # use this for manually testing cmd line args
-    # sys.argv = ['', '--test', '3', '1']
+    # sys.argv = ['',  '6', '1']
+    # sys.argv = ['',  '--test', '6', '1']
     main()
